@@ -14,15 +14,15 @@ class InterfaxSpider(NewsSpider):
         text_path='//article[contains(@itemprop, "articleBody")]/p[not(contains(@itemprop, "author"))]//text()',
         topics_path='//aside[contains(@class, "textML")]/a//text()',
         authors_path='//p[contains(@itemprop, "author")]//text()',
-        reposts_fb_path='_',
-        reposts_vk_path='_',
-        reposts_ok_path='_',
-        reposts_twi_path='_',
-        reposts_lj_path='_',
-        reposts_tg_path='_',
-        likes_path='_',
-        views_path='_',
-        comm_count_path='_'
+        reposts_fb_path="_",
+        reposts_vk_path="_",
+        reposts_ok_path="_",
+        reposts_twi_path="_",
+        reposts_lj_path="_",
+        reposts_tg_path="_",
+        likes_path="_",
+        views_path="_",
+        comm_count_path="_",
     )
 
     def parse(self, response):
@@ -43,4 +43,3 @@ class InterfaxSpider(NewsSpider):
             yield response.follow(page_href, self.parse_page)
         for document_href in response.xpath('//div[contains(@class, "an")]/div/a/@href').extract():
             yield response.follow(document_href, self.parse_document)
-
