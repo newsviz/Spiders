@@ -6,7 +6,7 @@ setup(
     name="project",
     version="1.0",
     packages=[
-        'newsbot',
+        "newsbot",
     ],
     entry_points={"scrapy": ["settings = newsbot.settings"]},
 )
