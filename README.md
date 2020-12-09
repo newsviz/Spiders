@@ -1,6 +1,9 @@
 # Spiders
 Spiders and crawlers for news download
 
+# Contributing
+См [CONTRIBUTING.md](CONTRIBUTING.md)
+
 ### Запуск паука ###
 
 ```
