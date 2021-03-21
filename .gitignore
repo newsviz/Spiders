@@ -35,3 +35,6 @@ Pipfile.lock
 
 # Visual Studio Code
 .vscode/
+
+# data
+*.csv
