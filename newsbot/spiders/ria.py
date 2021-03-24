@@ -14,7 +14,6 @@ class RiaSpider(NewsSpider):
     config = NewsSpiderConfig(
         title_path='//h1[contains(@class, "article__title")]/text()',
         date_path='//div[contains(@class, "endless__item")]/@data-published',
-        #date_format="%Y-%m-%dT%H:%MZ",
         date_format="%Y-%m-%dT%H:%M",
         text_path='//div[contains(@class, "article__block") and @data-type = "text"]//text()',
         topics_path='//a[contains(@class, "article__tags-item")]/text()',
