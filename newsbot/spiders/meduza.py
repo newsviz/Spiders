@@ -40,7 +40,7 @@ class MeduzaSpider(NewsSpider):
     config = NewsSpiderConfig(
         title_path='//h1[@class="RichTitle-root" or @class="SimpleTitle-root" or '
         + '@class="RichTitle-root RichTitle-slide"]//text()',
-        date_path='//time[@class="Timestamp-root"]/text()',
+        date_path='//div[@class="GeneralMaterial-materialHeader" or @class="Slide-slide"]//time/text()',
         date_format="%H:%M, %d %m %Y",
         text_path='//div[@class="GeneralMaterial-article" or @class="SlidesMaterial-layout" '
         + 'or @class="MediaCaption-caption"]//p//text() | //div[@class="MediaCaption-caption"]//text() | '
