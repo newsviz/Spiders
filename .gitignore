@@ -38,3 +38,6 @@ Pipfile.lock
 
 # data
 *.csv
+
+.idea/
+venv/
