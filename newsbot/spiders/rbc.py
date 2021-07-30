@@ -13,7 +13,7 @@ class RbcSpider(NewsSpider):
     link_tmpl = "https://www.rbc.ru/v10/ajax/get-news-feed/project/rbcnews/lastDate/{}/limit/22"
     start_urls = [link_tmpl.format(int(time.time()))]
     config = NewsSpiderConfig(
-        title_path='(.//span[contains(@class, "js-slide-title")])[1]//text()',
+        title_path="//h1/text()",
         date_path="_",
         date_format="%Y-%m-%d %H:%M:%S",
         text_path='(.//div[contains(@class, "article__text")])'
