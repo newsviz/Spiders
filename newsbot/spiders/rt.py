@@ -1,4 +1,5 @@
 from datetime import date
+from datetime import datetime
 from typing import List
 
 from scrapy import Request, Selector
@@ -43,9 +44,14 @@ class RussiaTodaySpider(NewsSpider):
         """Parse each sub_sitemap."""
         body = response.body
         links = Selector(text=body).xpath("//loc/text()").getall()
+        last_mod_dts = Selector(text=body).xpath("//lastmod/text()").getall()
 
-        for link in links:
-            yield Request(url=link, callback=self.parse_document)
+        for link, last_mod_dt in zip(links, last_mod_dts):
+            # Convert last_mod_dt to datetime
+            last_mod_dt = datetime.strptime(last_mod_dt.replace(":", ""), "%Y-%m-%dT%H%M%S%z")
+
+            if last_mod_dt.date() >= self.until_date:
+                yield Request(url=link, callback=self.parse_document)
 
     def _fix_syntax(self, sample: List[str], idx_split: int) -> List[str]:
         """Fix timestamp syntax, droping timezone postfix."""
@@ -68,8 +74,4 @@ class RussiaTodaySpider(NewsSpider):
             except KeyError:
                 print("Error. No date value.")
             else:
-                raw_date = item["date"][0][:10].split("-")
-                processed_date = self._get_date(raw_date)
-
-                if processed_date >= self.until_date:
-                    yield item
+                yield item
