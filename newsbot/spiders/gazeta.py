@@ -15,7 +15,7 @@ class GazetaSpider(NewsSpider):
         date_format="%Y-%m-%dT%H:%M:%S%z",
         text_path='//div[contains(@itemprop, "articleBody")]//p//text() | '
         '//span[contains(@itemprop, "description")]//text()',
-        topics_path='//div[contains(@class, "active")]/a/span/text()',
+        topics_path='//div[contains(@class, "rubric")]/a/span/text()',
         authors_path='//span[contains(@itemprop, "author")]//text()',
         reposts_fb_path="_",
         reposts_vk_path="_",
@@ -39,7 +39,7 @@ class GazetaSpider(NewsSpider):
             last_modif_dt = datetime.strptime(last_modif_dt.replace(":", ""), "%Y-%m-%dT%H%M%S%z")
 
             if last_modif_dt.date() >= self.until_date:
-                yield Request(url=link, callback=self.parse_sub_sitemap)
+                yield Request(url=link, callback=self.parse_articles_sitemap)
 
     def parse_sub_sitemap(self, response):
         # Parse sub sitemaps
@@ -75,8 +75,13 @@ class GazetaSpider(NewsSpider):
 
             res["text"] = [x.replace("\n", "\\n") for x in res["text"] if x != "\n" and not x.startswith(ad_parts)]
 
+            if "authors" in res:
+                res["authors"] = [x.replace("\n", "\\n") for x in res["authors"] if x != "\n"]
+
             # Remove ":" in timezone
             pub_dt = res["date"][0]
             res["date"] = [pub_dt[:-3] + pub_dt[-3:].replace(":", "")]
 
+            if "topics" not in res:
+                res["topics"] = "_"
             yield res
