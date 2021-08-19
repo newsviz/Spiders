@@ -45,7 +45,6 @@ def has_lines_except_header(filename):
                           ('iz', IzSpider),
                           ('kommersant', KommersantSpider),
                           ('meduza', MeduzaSpider),
-                          ('news', NewsSpider),
                           ('rbc', RbcSpider),
                           ('ria', RiaSpider),
                           ('rt', RussiaTodaySpider),
