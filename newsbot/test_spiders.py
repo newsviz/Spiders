@@ -17,7 +17,7 @@ from newsbot.spiders.tass import RussiaTassSpider
 from newsbot.spiders.tvzvezda import TvZvezdaSpider
 from newsbot.spiders.vedomosti import VedomostiSpider
 
-PAGE_MAX = 5
+PAGE_MAX = 25
 
 
 def _run_crawler(spider_cls):
