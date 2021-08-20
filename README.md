@@ -87,6 +87,13 @@ class CoolWebsiteSpider(NewsSpider):
 6) Изменить `parse` и, если необходимо, `parse_document`
 7) Тестировать
 
+### Тестирование
+
+Для автоматического тестирования пауков запустите команду
+
+`pytest newsbot/test_spiders.py`
+
+После завершения тестирования в short test summary info будут выведены пауки, непрошедшие тесты.
 
 ### Рекомендации
 
