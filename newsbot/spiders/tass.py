@@ -10,8 +10,8 @@ class RussiaTassSpider(NewsSpider):
     start_urls = ["https://tass.ru/sitemap.xml"]
     config = NewsSpiderConfig(
         title_path='//div[contains(@class, "news-header__title")]//text() | '
-                   '//h1[contains(@class, "news-header__title")]//text()',
-        date_path='//dateformat/@time',
+        '//h1[contains(@class, "news-header__title")]//text()',
+        date_path="//dateformat/@time",
         date_format="%Y-%m-%d %H:%M:%S",
         text_path='//div[contains(@class, "text-block")]//p//text()',
         topics_path="_",
